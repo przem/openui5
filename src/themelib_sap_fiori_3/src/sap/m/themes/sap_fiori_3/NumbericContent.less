@@ -1,0 +1,47 @@
+/* =========================================== */
+/* CSS for control sap.m/NumericContent        */
+/* Fiori 3 theme by Zalaris                    */
+/* =========================================== */
+
+.sapMNCValue {
+  font-size: 2.5rem;
+  text-align: right;
+}
+
+.sapMNCValueScr {
+
+  .sapMNCIconImage {
+    float: left;
+    margin-left: 10px;
+    text-shadow: none;
+  }
+}
+
+.sapMNCInner {
+  padding-top: 1.5rem;
+}
+
+.sapMNCValue.Neutral,
+.sapMNCIndicator.Neutral,
+.sapMNCScale.Neutral {
+  color: @sapNeutralColor;
+  text-shadow: 0 0 4px fade(@sapNeutralColor, 50%);
+}
+.sapMNCValue.Good,
+.sapMNCIndicator.Good,
+.sapMNCScale.Good {
+  color: @sapPositiveColor;
+  text-shadow: 0 0 4px fade(@sapPositiveColor, 50%);
+}
+.sapMNCValue.Error,
+.sapMNCIndicator.Error,
+.sapMNCScale.Error {
+  color: @sapNegativeColor;
+  text-shadow: 0 0 4px fade(@sapNegativeColor, 50%);
+}
+.sapMNCValue.Critical,
+.sapMNCIndicator.Critical,
+.sapMNCScale.Critical {
+  color: @sapCriticalColor;
+  text-shadow: 0 0 4px fade(@sapCriticalColor, 50%);
+}

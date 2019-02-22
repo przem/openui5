@@ -12,7 +12,7 @@
 // [Label "Highlight Color"]
 // [Description "The color which is used to highlight screen elements"]
 // [Tags "Quick", "Base", "Content", "Color"]
-@sapHighlightColor: darken(@sapBrandColor, 10);
+@sapHighlightColor: @sapPrimary2; //darken(@sapBrandColor, 10);
 
 // [Label "Base Color"]
 // [Description "The color which is used to derive the most dominant background colors"]
@@ -31,12 +31,12 @@
 // [Label "Background Color"]
 // [Description "The main background color of the screen"]
 // [Tags "Quick", "Base", "Color"]
-@sapBackgroundColor: darken(@sapPrimary3, 2); // @sapPrimary5;
+@sapBackgroundColor: #F9F7F9;//darken(@sapPrimary3, 2); // @sapPrimary5;
 
 // [Label "Font Family"]
 // [Description "The preferred font family"]
 // [Tags "Quick", "Base", "Content", "Font", "Protected"]
-@sapFontFamily: "72", "72full", Arial, Helvetica, sans-serif;
+@sapFontFamily: "ProximaNova-Regular", "72", "72full", Arial, Helvetica, sans-serif;
 
 // [Label "Font Size"]
 // [Description "The preferred font size"]
@@ -82,7 +82,7 @@
 
 /* PRIMARY COLORS */
 @sapPrimary1: #354a5f; //#3f5161;
-@sapPrimary2: #0a6ed1; //#427cac;
+@sapPrimary2: #40A1FF; //#427cac;
 @sapPrimary3: #fff; //#eff4f9;
 @sapPrimary4: #edeff0; //#ffffff;
 @sapPrimary5: #89919a; //#fafafa;
@@ -140,7 +140,7 @@
 // [Label "Negative Color"]
 // [Description "The color for elements showing negative state"]
 // [Tags "Base", "SemanticColor", "Color"]
-@sapNegativeColor: #bb0000; //#bb0000;
+@sapNegativeColor: #D0021B; //#bb0000;
 
 // [Label "Critical Color"]
 // [Description "The color for elements showing critical state"]
@@ -150,12 +150,12 @@
 // [Label "Positive Color"]
 // [Description "The color for elements showing positive state"]
 // [Tags "Base", "SemanticColor", "Color"]
-@sapPositiveColor: #107e3e; //#2b7c2b;
+@sapPositiveColor: #00AF00; //#107e3e //#2b7c2b;
 
 // [Label "Informative Color"]
 // [Description "The color for elements showing informative state"]
 // [Tags "Base", "SemanticColor", "Color"]
-@sapInformativeColor: #0a6ed1; //0
+@sapInformativeColor: #0291D2; //#0a6ed1 //0
 
 // [Label "Neutral Color"]
 // [Description "The color for elements showing neutral state"]
@@ -297,7 +297,7 @@
 // [Label "Content Shadow Color"]
 // [Description "The shadow color."]
 // [Tags "Base", "Content", "Color"]
-@sapContent_ShadowColor: #000;
+@sapContent_ShadowColor: #6a6d70;
 
 // [Label "Content Shadow Contrast Color"]
 // [Description "The alternative shadow color."]
@@ -366,7 +366,7 @@
 // [Label "Shell Background Color"]
 // [Description "The background color of the shell."]
 // [Tags "Base", "Shell", "Color"]
-@sapShell_Background: @sapPrimary4; // darken(desaturate(@sapBaseColor,6),11);
+@sapShell_Background: #fff;//@sapPrimary4; // darken(desaturate(@sapBaseColor,6),11);
 
 // [Label "Shell Background Image/Gradient"]
 // [Description "The background image or gradient of the shell."]
@@ -396,12 +396,12 @@
 // [Label "Shell Border Color"]
 // [Description "The color of the borders of the shell."]
 // [Tags "Base", "Shell", "Color"]
-@sapShell_BorderColor: @sapShellColor;
+@sapShell_BorderColor: #CEC6C6;//@sapShellColor;
 
 // [Label "Shell Text Color"]
 // [Description "The color of texts in the shell."]
 // [Tags "Base", "Shell", "Color", "Font"]
-@sapShell_TextColor: contrast(@sapShellColor, @sapTextColor, @sapContent_ContrastTextColor, @sapContent_ContrastTextThreshold); /*darken(@sapBrandColor, 10); // no contrast function allowed because background can be gradient*/
+@sapShell_TextColor: @sapPrimary6; //contrast(@sapShellColor, @sapTextColor, @sapContent_ContrastTextColor, @sapContent_ContrastTextThreshold); /*darken(@sapBrandColor, 10); // no contrast function allowed because background can be gradient*/
 
 // [Label "Shell Interactive Text Color"]
 // [Description "The color of interactive texts in the shell."]
@@ -613,12 +613,12 @@
 // [Label "Group Title Text Color"]
 // [Description "The text color of the group title. The text color of the title of a group."]
 // [Tags "Base", "Group", "Color", "Font"]
-@sapGroup_TitleTextColor: contrast(@sapBackgroundColor, @sapTitleColor, @sapContent_ContrastTextColor, @sapContent_ContrastTextThreshold);
+@sapGroup_TitleTextColor: #303746; //contrast(@sapBackgroundColor, @sapTitleColor, @sapContent_ContrastTextColor, @sapContent_ContrastTextThreshold);
 
 // [Label "Group Title Font Size"]
 // [Description "The font size of the group title."]
 // [Tags "Base", "Group", "Dimension", "Font", "Protected"]
-@sapGroup_Title_FontSize: @sapFontSize; // 1.0em;
+@sapGroup_Title_FontSize: 1.2em; //@sapFontSize; // 1.0em;
 
 // [Label "Group Content Background Color"]
 // [Description "The background color of the content area of a group."]
@@ -784,7 +784,7 @@
 // [Label "Tile Title Text Color"]
 // [Description "The color of title texts on tiles."]
 // [Tags "Base", "Tile", "Color", "Font"]
-@sapTile_TitleTextColor: contrast(@sapTile_Background, @sapTitleColor, @sapContent_ContrastTextColor, @sapContent_ContrastTextThreshold); // contrast(@sapTile_Background, @sapTextColor, @sapContent_ContrastTextColor, @sapContent_ContrastTextThreshold);
+@sapTile_TitleTextColor: darken(@sapBrandColor, 35); //contrast(@sapTile_Background, @sapTitleColor, @sapContent_ContrastTextColor, @sapContent_ContrastTextThreshold); // contrast(@sapTile_Background, @sapTextColor, @sapContent_ContrastTextColor, @sapContent_ContrastTextThreshold);
 
 // [Label "Tile Text Color"]
 // [Description "The color of texts on tiles."]
@@ -794,7 +794,7 @@
 // [Label "Tile Icon Color"]
 // [Description "The color of icons on tiles."]
 // [Tags "Base", "Content", "Color"]
-@sapTile_IconColor: contrast(@sapTile_Background, @sapContent_NonInteractiveIconColor, @sapContent_ContrastIconColor, @sapContent_ContrastTextThreshold); // contrast(@sapTile_Background, lighten(@sapContent_IconColor, 34), @sapContent_ContrastIconColor, @sapContent_ContrastTextThreshold);
+@sapTile_IconColor: darken(@sapBrandColor, 45);//contrast(@sapTile_Background, @sapContent_NonInteractiveIconColor, @sapContent_ContrastIconColor, @sapContent_ContrastTextThreshold); // contrast(@sapTile_Background, lighten(@sapContent_IconColor, 34), @sapContent_ContrastIconColor, @sapContent_ContrastTextThreshold);
 
 // [Label "Chart Ordered Color 1"]
 // [Description "This color is used as a ordered color of a sequence of 11 chart colors. It has a defined contrast to its predecessor and successor."]
