@@ -45,7 +45,11 @@ function(
 		},
 		getModel: function () {}
 	};
-	sinon.stub(Utils, "_getAppComponentForComponent").returns(oMockedAppComponent);
+	var oGetAppComponentForControlStub = sinon.stub(Utils, "getAppComponentForControl").returns(oMockedAppComponent);
+
+	QUnit.done(function () {
+		oGetAppComponentForControlStub.restore();
+	});
 
 	QUnit.module("Given an AddODataProperty change with a valid entry in the change registry,", {
 		beforeEach : function () {
@@ -54,28 +58,28 @@ function(
 			this.fnApplyChangeSpy = sinon.spy();
 			this.fnCompleteChangeContentSpy = sinon.spy();
 
-			oChangeRegistry.registerControlsForChanges({
+			return oChangeRegistry.registerControlsForChanges({
 				"sap.m.Button" : {
 					"addODataProperty" : {
 						completeChangeContent: this.fnCompleteChangeContentSpy,
 						applyChange: this.fnApplyChangeSpy
 					}
 				}
-			});
+			})
+			.then(function() {
+				this.oButton = new Button("button");
 
-			this.oButton = new Button("button");
-
-			this.oDesignTimeMetadata = new ElementDesignTimeMetadata({
-				data : {
-					actions : {
-						addODataProperty : {
-							changeType: "addODataProperty",
-							isEnabled : true
+				this.oDesignTimeMetadata = new ElementDesignTimeMetadata({
+					data : {
+						actions : {
+							addODataProperty : {
+								changeType: "addODataProperty",
+								isEnabled : true
+							}
 						}
 					}
-				}
-			});
-
+				});
+			}.bind(this));
 		},
 		afterEach : function(assert) {
 		}

@@ -70,7 +70,7 @@ sap.ui.define([
 				},
 				getModel: function () {}
 			};
-			this.oGetAppComponentForControlStub = sinon.stub(FlUtils, "_getAppComponentForComponent").returns(oMockedAppComponent);
+			this.oGetAppComponentForControlStub = sinon.stub(FlUtils, "getAppComponentForControl").returns(oMockedAppComponent);
 		},
 		after: function () {
 			this.oGetAppComponentForControlStub.restore();
@@ -84,24 +84,25 @@ sap.ui.define([
 			this.fnApplyChangeSpy = sinon.spy();
 			this.fnCompleteChangeContentSpy = sinon.spy();
 
-			oChangeRegistry.registerControlsForChanges({
+			return oChangeRegistry.registerControlsForChanges({
 				"sap.m.Link": {
 					"hideControl" : {
 						applyChange: this.fnApplyChangeSpy,
 						completeChangeContent: this.fnCompleteChangeContentSpy
 					}
 				}
-			});
-
-			this.oLinkDesignTimeMetadata = new DesignTimeMetadata({
-				data : {
-					actions : {
-						remove : {
-							changeType : "hideControl"
+			})
+			.then(function() {
+				this.oLinkDesignTimeMetadata = new DesignTimeMetadata({
+					data : {
+						actions : {
+							remove : {
+								changeType : "hideControl"
+							}
 						}
 					}
-				}
-			});
+				});
+			}.bind(this));
 		},
 		afterEach: function () {
 			this.oLink.destroy();

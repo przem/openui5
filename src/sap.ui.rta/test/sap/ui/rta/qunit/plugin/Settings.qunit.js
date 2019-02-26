@@ -16,7 +16,6 @@ sap.ui.define([
 	"sap/ui/rta/plugin/Settings",
 	"sap/ui/rta/command/Stack",
 	"sap/ui/fl/Utils",
-	"sap/ui/dt/Util",
 	'sap/ui/base/ManagedObject',
 	"sap/base/Log"
 ],
@@ -36,7 +35,6 @@ function (
 	SettingsPlugin,
 	Stack,
 	Utils,
-	DtUtil,
 	ManagedObject,
 	BaseLog
 ) {
@@ -69,32 +67,36 @@ function (
 		},
 		getModel: function () {}
 	};
-	sinon.stub(Utils, "_getAppComponentForComponent").returns(oMockedAppComponent);
-	sinon.stub(PropertyChange, "completeChangeContent");
+	var oGetAppComponentForControlStub = sinon.stub(Utils, "getAppComponentForControl").returns(oMockedAppComponent);
+	var oCompleteChangeContentStub = sinon.stub(PropertyChange, "completeChangeContent");
+
+	QUnit.done(function () {
+		oGetAppComponentForControlStub.restore();
+		oCompleteChangeContentStub.restore();
+	});
 
 	var sandbox = sinon.sandbox.create();
 
 	QUnit.module("Given a designTime and settings plugin are instantiated", {
 		beforeEach : function () {
 			var oChangeRegistry = ChangeRegistry.getInstance();
-			oChangeRegistry.registerControlsForChanges({
+			return oChangeRegistry.registerControlsForChanges({
 				"sap.m.Button" : {
 					"changeSettings" : "sap/ui/fl/changeHandler/PropertyChange"
 				}
-			});
-
-			this.oCommandStack = new Stack();
-			this.oSettingsPlugin = new SettingsPlugin({
-				commandFactory : new CommandFactory(),
-				commandStack : this.oCommandStack
-			});
-
-			this.oButton = new Button("button", {text : "Button"});
-
-			this.oVerticalLayout = new VerticalLayout({
-				content : [this.oButton]
-			}).placeAt("qunit-fixture");
-			sap.ui.getCore().applyChanges();
+			})
+			.then(function() {
+				this.oCommandStack = new Stack();
+				this.oSettingsPlugin = new SettingsPlugin({
+					commandFactory : new CommandFactory(),
+					commandStack : this.oCommandStack
+				});
+				this.oButton = new Button("button", {text : "Button"});
+				this.oVerticalLayout = new VerticalLayout({
+					content : [this.oButton]
+				}).placeAt("qunit-fixture");
+				sap.ui.getCore().applyChanges();
+			}.bind(this));
 		},
 		afterEach : function () {
 			sandbox.restore();

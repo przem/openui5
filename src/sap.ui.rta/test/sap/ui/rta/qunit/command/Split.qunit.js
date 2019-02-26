@@ -52,7 +52,7 @@ function(
 				getModel: function () {}
 			};
 
-			this.oGetAppComponentForControlStub = sinon.stub(FlUtils, "_getAppComponentForComponent").returns(oMockedAppComponent);
+			this.oGetAppComponentForControlStub = sinon.stub(FlUtils, "getAppComponentForControl").returns(oMockedAppComponent);
 		},
 		after: function () {
 			this.oGetAppComponentForControlStub.restore();
@@ -73,7 +73,7 @@ function(
 			this.fnCompleteChangeContentSpy = sinon.spy();
 			this.fnApplyChangeSpy = sinon.spy();
 
-			oChangeRegistry.registerControlsForChanges({
+			return oChangeRegistry.registerControlsForChanges({
 				"sap.m.Panel": {
 					"splitStuff" : {
 						completeChangeContent: this.fnCompleteChangeContentSpy,
