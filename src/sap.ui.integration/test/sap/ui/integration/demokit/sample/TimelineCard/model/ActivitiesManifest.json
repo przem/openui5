@@ -28,15 +28,12 @@
 	  },
 	  "item": {
 		"dateTime" : {
-		  "label": "{{time_label}}",
 		  "value": "{Time}"
 		},
 		"description" : {
-		  "label": "{{description_label}}",
 		  "value": "{Description}"
 		},
 		"title" : {
-		  "label": "{{title_label}}",
 		  "value": "{Title}"
 		},
 		"icon": {
